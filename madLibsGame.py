@@ -4,6 +4,7 @@ def parseL(Story):
     returnL = []
     for x in Story:
         if(type(x) is list):
-            print(type(x))
+            returnL.append(x[1])
+    return returnL
 
-parseL(storyList)
+print(parseL(storyList))
