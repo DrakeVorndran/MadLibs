@@ -9,10 +9,27 @@ def parseL(Story):
     return returnL
 
 def Rwords(editible):
+    sClone = storyList[:]
     currEdit = 0
     for x in range(len(editible)):
         currEdit = editible.pop(int(random()*len(editible)))
-        storyList[currEdit] = input("please give me a {} word type: ".format(storyList[currEdit][0]))
+        prevWord = ""
+        if(sClone[currEdit][0][0] in ["a","e","i","o","u"]):
+            prevWord = "an"
+        else:
+            prevWord = "a"
+        sClone[currEdit] = input("please give me {} {} ".format(prevWord,sClone[currEdit][0]))
+    return sClone
 
-Rwords(parseL(storyList))
-print(storyList)
+def printStory(printL):
+    printerS = ""
+    for x in printL:
+        printerS+=" "+x
+    return printerS[1:]
+
+def test(editible):
+    for x in editible:
+        storyList[x] = storyList[x][0]
+
+# test(parseL(storyList))
+print (printStory(Rwords(parseL(storyList))))
