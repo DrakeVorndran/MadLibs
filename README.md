@@ -35,3 +35,11 @@ generator:
 
         parser(string):
             returns compatible list
+
+
+withstrings:
+    starterString = "some string with {} in it"
+    list with all the diffrent word types
+    code to prompt the user for all of them
+    put all answers in a list
+    print answer
