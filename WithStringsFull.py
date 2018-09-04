@@ -8,7 +8,7 @@ storyD = {
 
 }
 
-def getIn(prompt,type="person",cpuIn="empty"):
+def getIn(prompt = "",type="person",cpuIn="empty"):
     if type=="person":
         return input(prompt)
     else:
@@ -52,15 +52,33 @@ def chooseStory():
 def test():
     chosenStory = storyD["The Pizza Place"]
     for x in range(len(chosenStory[1])):
-        chosenStory[1][x] = (colored(getIn(chosenStory[1][x]+':',"cpu"),"yellow",attrs=['bold']))
+        chosenStory[1][x] = (colored(getIn(chosenStory[1][x]+':',"cpu",x),"yellow",attrs=['bold']))
     print (chosenStory[0] % tuple(chosenStory[1]))
 
+def getWords(cS):
+    wordsL = cS[1]
+    wordsR = []
+    for x in range(len(wordsL)):
+        wordsR.append(x)
 
+    for x in range(50+int(random()*100)):
+        rand1 = int(random()*len(wordsL))
+        rand2 = int(random()*len(wordsL))
+        wordsL[rand1],wordsL[rand2] = wordsL[rand2],wordsL[rand1]
+        wordsR[rand1],wordsR[rand2] = wordsR[rand2],wordsR[rand1]
+
+
+    for x in range(len(wordsL)):
+        wordsL[x] = (colored(getIn(wordsL[x]+':'),"yellow",attrs=['bold']))
+    for x in range(len(wordsL)):
+        pos1 = wordsR.index(x)
+        pos2 = wordsR[pos1]
+        wordsR[pos1],wordsR[pos2],wordsL[pos1],wordsL[pos2] = wordsR[pos2],wordsR[pos1],wordsL[pos2],wordsL[pos1]
+    return(cS)
 
 def run():
     chosenStory = chooseStory()
-    for x in range(len(chosenStory[1])):
-        chosenStory[1][x] = (colored(getIn(chosenStory[1][x]+':'),"yellow",attrs=['bold']))
+    chosenStory = getWords(chosenStory)
     print (chosenStory[0] % tuple(chosenStory[1]))
 
-test()
+run()
