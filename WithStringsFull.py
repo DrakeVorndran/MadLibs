@@ -8,6 +8,14 @@ storyD = {
 
 }
 
+def getIn(prompt,type="person",cpuIn="empty"):
+    if type=="person":
+        return input(prompt)
+    else:
+        if cpuIn=="empty":
+            return"asdf"
+        else:
+            return(cpuIn)
 def printStories():
     stories = []
     for x in storyD:
@@ -22,7 +30,7 @@ def chooseStory():
     userNotSmart = True
     while(userNotSmart):
         print("Please type either the number or name of the story you'd like to play: ")
-        userIn = (input().lower()).title()
+        userIn = (getIn().lower()).title()
         print(userIn)
         if(userIn == "Stop"):
             userNotSmart = False
@@ -41,8 +49,18 @@ def chooseStory():
                 printStories()
 
 
+def test():
+    chosenStory = storyD["The Pizza Place"]
+    for x in range(len(chosenStory[1])):
+        chosenStory[1][x] = (colored(getIn(chosenStory[1][x]+':',"cpu"),"yellow",attrs=['bold']))
+    print (chosenStory[0] % tuple(chosenStory[1]))
 
-s = chooseStory()
 
-for x in range(len(s[1])):  s[1][x] = (colored(input(s[1][x]+':'),"yellow",attrs=['bold']))
-print (s[0] % tuple(s[1]))
+
+def run():
+    chosenStory = chooseStory()
+    for x in range(len(chosenStory[1])):
+        chosenStory[1][x] = (colored(getIn(chosenStory[1][x]+':'),"yellow",attrs=['bold']))
+    print (chosenStory[0] % tuple(chosenStory[1]))
+
+test()
